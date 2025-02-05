@@ -2,14 +2,16 @@
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import type { FC, ReactNode } from 'react';
+import type { ReactNode, JSX } from 'react';
 import { useState } from 'react';
 
 interface QueryProviderProps {
   children: ReactNode;
 }
 
-const QueryProvider: FC<QueryProviderProps> = ({ children }) => {
+const QueryProvider: ({ children }: { children: any }) => JSX.Element = ({
+  children,
+}) => {
   const [queryClient] = useState(
     () =>
       new QueryClient({
