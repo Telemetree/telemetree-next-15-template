@@ -2,7 +2,6 @@
 
 The aim for this starter is to give you a starting point with everything ready to work and launch to production. Web Vitals with 100% by default. Folder structure ready. Tooling ready. SEO ready. SSR ready.
 
-[![image](/public/images/og.png)](https://next-starter-ebon.vercel.app/)
 
 ## ⚡️ Stack
 
