@@ -7,26 +7,32 @@ import {
   TrackGroups,
   TwaAnalyticsProvider,
 } from '@tonsolutions/telemetree-react';
-import { useInitData, useLaunchParams } from '@telegram-apps/sdk-react';
+import { useLaunchParams } from '@telegram-apps/sdk-react';
 
 const Providers: ({ children }: { children: any }) => JSX.Element = ({
   children,
 }) => {
-  const initData = useInitData();
   const launchParams = useLaunchParams();
+  
   console.log('launchParams', launchParams);
-  console.log('initData', initData);
+
+  // Handle case where we're not in Telegram environment
+  if (!launchParams || !launchParams.initData) {
+    console.warn('Not in Telegram Web App environment');
+    return <>{children}</>;
+  }
 
   const telegramWebAppData: TelegramWebAppData = {
-    query_id: initData?.queryId,
-    user: initData?.user,
-    chat_type: initData?.chatType,
-    chat_instance: initData?.chatInstance,
-    start_param: initData?.startParam,
-    auth_date: initData?.authDate,
-    hash: initData?.hash,
-    platform: launchParams?.platform,
+    query_id: launchParams.initData.queryId,
+    user: launchParams.initData.user,
+    chat_type: launchParams.initData.chatType,
+    chat_instance: launchParams.initData.chatInstance,
+    start_param: launchParams.initData.startParam,
+    auth_date: launchParams.initData.authDate,
+    hash: launchParams.initData.hash,
+    platform: launchParams.platform,
   };
+
   return (
     <TwaAnalyticsProvider
       projectId="df2ff498-ce0d-4678-91a5-bc34d1257b8d"
